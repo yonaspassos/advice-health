@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div>
-      <ul
-        className="nav nav-pills nav-flush flex-column"
-        style={{ backgroundColor: "yellow" }}
-      >
+    <aside className="d-flex flex-column h-100 border-end">
+      <ul className="nav nav-pills nav-flush flex-column overflow-hidden">
         <li>
           <Link to="/" className="nav-link">
             Dashboard
@@ -24,7 +21,7 @@ const Sidebar = () => {
           </Link>
         </li>
       </ul>
-    </div>
+    </aside>
   );
 };
 export default Sidebar;

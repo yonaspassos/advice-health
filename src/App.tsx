@@ -9,13 +9,15 @@ import Appointment from "./pages/Appointment";
 function App() {
   return (
     <Router>
-      <div className="container-fluid p-0">
-        <Header />
-        <div className="row">
-          <div className="col col-md-2">
+      <div className="container-fluid p-0 vh-100 d-flex flex-column overflow-hidden">
+        <div className="row flex-grow-0">
+          <Header />
+        </div>
+        <div className="row flex-grow-1">
+          <div className="col col-md-1 overflow-hidden">
             <Sidebar />
           </div>
-          <div className="col col-md-10 p-3">
+          <div className="col col-md-11 p-3">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/scheduler" element={<Scheduler />} />
