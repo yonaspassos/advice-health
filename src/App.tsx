@@ -1,23 +1,24 @@
 import React from "react";
-import "./App.css";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Scheduler from "./pages/Scheduler";
+import Appointment from "./pages/Appointment";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/scheduler" element={<Scheduler />} />
+          <Route path="/appointment" element={<Appointment />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
