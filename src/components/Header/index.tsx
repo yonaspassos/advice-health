@@ -2,8 +2,19 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header>
-      <h1>header</h1>
+    <header className="container-fluid" style={{ backgroundColor: "gray" }}>
+      <div className="row p-3">
+        <div className="col col-md-10">
+          <h1>Consultório Médico</h1>
+        </div>
+        <div className="col col-md-2">
+          <img
+            className="rounded-circle"
+            src="https://i.pravatar.cc/50?img=18"
+            alt="imagem de perfil"
+          />
+        </div>
+      </div>
     </header>
   );
 };

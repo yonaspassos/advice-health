@@ -4,15 +4,24 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div>
-      <ul>
+      <ul
+        className="nav nav-pills nav-flush flex-column"
+        style={{ backgroundColor: "yellow" }}
+      >
         <li>
-          <Link to="/">Dashboard</Link>
+          <Link to="/" className="nav-link">
+            Dashboard
+          </Link>
         </li>
         <li>
-          <Link to="/scheduler">Agendamento</Link>
+          <Link to="/scheduler" className="nav-link">
+            Agendamento
+          </Link>
         </li>
         <li>
-          <Link to="/appointment">Consultas</Link>
+          <Link to="/appointment" className="nav-link">
+            Consultas
+          </Link>
         </li>
       </ul>
     </div>
