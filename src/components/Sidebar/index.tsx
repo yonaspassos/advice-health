@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { BsCalendar, BsSpeedometer2, BsTable } from "react-icons/bs";
 
 const Sidebar = () => {
   return (
@@ -7,17 +8,17 @@ const Sidebar = () => {
       <ul className="nav nav-pills nav-flush flex-column overflow-hidden">
         <li>
           <Link to="/" className="nav-link">
-            Dashboard
+            <BsSpeedometer2 />
           </Link>
         </li>
         <li>
           <Link to="/scheduler" className="nav-link">
-            Agendamento
+            <BsCalendar />
           </Link>
         </li>
         <li>
           <Link to="/appointment" className="nav-link">
-            Consultas
+            <BsTable />
           </Link>
         </li>
       </ul>

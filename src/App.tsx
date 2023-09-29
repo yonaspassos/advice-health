@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Scheduler from "./pages/Scheduler";
 import Appointment from "./pages/Appointment";
+import styled from "styled-components";
 
 function App() {
   return (
@@ -13,21 +14,25 @@ function App() {
         <div className="row flex-grow-0">
           <Header />
         </div>
-        <div className="row flex-grow-1">
-          <div className="col col-md-1 overflow-hidden">
+        <div className="row d-flex flex-grow-1 h-100">
+          <div className="col flex-grow-0">
             <Sidebar />
           </div>
-          <div className="col col-md-11 p-3">
+          <Content className="col flex-grow-1">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/scheduler" element={<Scheduler />} />
               <Route path="/appointment" element={<Appointment />} />
             </Routes>
-          </div>
+          </Content>
         </div>
       </div>
     </Router>
   );
 }
+
+const Content = styled.div`
+  height: calc(100vh - 88px);
+`;
 
 export default App;
