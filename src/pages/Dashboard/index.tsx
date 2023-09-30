@@ -1,7 +1,5 @@
 import React from "react";
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import ProfilePicturePlaceholder from "../../components/ProfilePicturePlaceholder";
 import { BsSearch } from "react-icons/bs";
 import DashboardComponent from "../../components/Dashboard";
 import Table from "../../components/Table";

@@ -3,49 +3,6 @@ import { BsFillPencilFill, BsSearch } from "react-icons/bs";
 import { useIndexedDB } from "react-indexed-db-hook";
 
 const SchedulerTable = () => {
-  const data = [
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-  ];
-
   const { getAll } = useIndexedDB("appointments");
   const [appointments, setAppointments] = useState<any[]>([]);
 
