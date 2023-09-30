@@ -19,24 +19,36 @@ const TimeSlot = ({ time, appointment }: TimeSlotProps) => {
               <span className="display-5">{time}</span>
             </div>
             <div className="col d-flex m-3 p-2 align-items-center">
-              <ImagePlaceholder className="bg-secondary rounded-circle" />
+              {appointment?.patientName && (
+                <ImagePlaceholder className="rounded-circle" />
+              )}
               <div className="d-flex flex-column flex-grow-1 ms-3">
                 <span className="w-75 mb-1">{appointment?.patientName}</span>
-                <span className="col-6">
-                  {appointment?.phone} {appointment?.email}
+                <span>
+                  {[appointment?.phone, appointment?.email]
+                    .filter((n) => n)
+                    .join(" / ")}
                 </span>
               </div>
             </div>
           </div>
           {data ? (
-            <div className="col col-md-1 d-flex gap-1 align-self-end">
-              <BsCalendarEventFill />
-              <BsTrash3Fill />
-              <BsPencil />
+            <div className="col col-md-2 d-inline-flex align-self-end justify-content-around">
+              <Button>
+                <BsCalendarEventFill />
+              </Button>
+              <Button>
+                <BsTrash3Fill />
+              </Button>
+              <Button>
+                <BsPencil />
+              </Button>
             </div>
           ) : (
-            <div className="col col-md-1 d-flex gap-1 align-self-end">
-              <BsPlusCircleFill size={30} />
+            <div className="col col-md-1 d-inline-flex align-self-end justify-content-around">
+              <Button>
+                <BsPlusCircleFill size={20} />
+              </Button>
             </div>
           )}
         </div>
@@ -48,6 +60,15 @@ const TimeSlot = ({ time, appointment }: TimeSlotProps) => {
 const ImagePlaceholder = styled.div`
   width: 50px;
   height: 50px;
+  background: url("https://i.pravatar.cc/50");
+`;
+
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+  &:hover {
+    color: #3984b8;
+  }
 `;
 
 export default TimeSlot;

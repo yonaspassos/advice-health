@@ -16,9 +16,12 @@ export type Address = {
 export type Appointment = {
   id: number;
   patientName: string;
+  date: Date;
   cpf: string;
   birthDate: Date;
   address: Address;
   phone: string;
   email: string;
+  doctorId: number;
+  doctor?: Doctor;
 };

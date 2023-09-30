@@ -1,33 +1,59 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import TimeSlot from "../TimeSlot";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
-import { Appointment } from "../../types";
+import { Appointment as AppointmentType } from "../../types";
+import moment from "moment";
+import { useIndexedDB } from "react-indexed-db-hook";
+import Moment from "react-moment";
 
 const Schedule = ({ date }: { date?: Date | null }) => {
-  const appointment: Appointment = {
-    patientName: "Sr. Batata",
-    id: 0,
-    cpf: "0000000000",
-    birthDate: new Date(),
-    address: {
-      street: "Rua da batata",
-      number: "10",
-      neighborhood: "",
-      zipCode: "",
-      city: "",
-      state: "",
-    },
-    phone: "(48)99999999",
-    email: "gagarin@esportudo.com",
-  };
+  const { getAll } = useIndexedDB("appointments");
+  const [appointments, setAppointments] = useState<AppointmentType[]>([]);
+
+  useEffect(() => {
+    getAll().then((appointmentsFromDB) =>
+      setAppointments(
+        appointmentsFromDB.map((appointment) => ({
+          ...appointment,
+          date: new Date(appointment.date),
+        }))
+      )
+    );
+  }, [getAll]);
+
+  const slots = useMemo(() => {
+    const base = date || new Date();
+    const times = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+      .map((hour: number) =>
+        [0, 30].map((minute: number) => {
+          base.setHours(hour, minute, 0, 0);
+          return base.toISOString();
+        })
+      )
+      .flat(1);
+
+    return times.map((time: string) => {
+      const appointment = appointments.find((a: AppointmentType) => {
+        console.log(a.date, time);
+        return a.date.toISOString() === time;
+      });
+      return {
+        time: moment(time).format("HH:mm"),
+        appointment: appointment,
+      };
+    });
+  }, [appointments, date]);
+
   return (
     <div className="d-flex flex-column p-3 h-100">
       {date ? (
         <>
-          <h3>{date?.toLocaleDateString()}</h3>
+          <h3>
+            <Moment format="DD/MM/YYYY">{date}</Moment>
+          </h3>
           <div className="my-3 overflow-y-auto flex-grow-1">
-            {Array.from(Array(10)).map((n) => (
-              <TimeSlot time={"08:00"} appointment={appointment} />
+            {slots.map((slot) => (
+              <TimeSlot time={slot.time} appointment={slot.appointment} />
             ))}
           </div>
         </>
