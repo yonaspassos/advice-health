@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillPencilFill, BsSearch } from "react-icons/bs";
+import { useIndexedDB } from "react-indexed-db-hook";
 
 const SchedulerTable = () => {
   const data = [
@@ -44,75 +45,50 @@ const SchedulerTable = () => {
       col7: "coluna 2",
     },
   ];
+
+  const { getAll } = useIndexedDB("appointments");
+  const [appointments, setAppointments] = useState<any[]>([]);
+
+  useEffect(() => {
+    getAll().then((appointmentsFromDB) => setAppointments(appointmentsFromDB));
+  }, [getAll]);
+
   return (
-    <>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Coluna 1</th>
-            <th className="th-lg">Coluna 2</th>
-            <th>Coluna 3</th>
-            <th>Coluna 4</th>
-            <th>Coluna 5</th>
-            <th>Coluna 6</th>
-            <th></th>
+    <table className="table table-striped align-middle">
+      <thead>
+        <tr>
+          <th></th>
+          <th className="th-lg">Paciente</th>
+          <th>Data da Consulta</th>
+          <th>Médico</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {appointments.map((appointment, index) => (
+          <tr key={index}>
+            <td>
+              <input className="form-check-input" type="checkbox" />
+            </td>
+            <td>{appointment["name"]}</td>
+            <td>{appointment["date"]}</td>
+            <td>{appointment["doctor_id"]}</td>
+            <td>{appointment["email"]}</td>
+            <td>{appointment["phone"]}</td>
+            <td>
+              <button className="btn">
+                <BsFillPencilFill />
+              </button>
+              <button className="btn">
+                <BsSearch />
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {data.map((schedule, index) => (
-            <tr key={index}>
-              <td>
-                <input className="form-check-input" type="checkbox" />
-              </td>
-              <td>{schedule["col2"]}</td>
-              <td>{schedule["col3"]}</td>
-              <td>{schedule["col4"]}</td>
-              <td>{schedule["col5"]}</td>
-              <td>{schedule["col6"]}</td>
-              <td>
-                <button className="btn">
-                  <BsFillPencilFill />
-                </button>
-                <button className="btn">
-                  <BsSearch />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="d-flex justify-content-end">
-        <nav aria-label="Page navigation example">
-          <ul className="pagination">
-            <li className="page-item">
-              <a className="page-link" href="#">
-                Previous
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                Next
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </>
+        ))}
+      </tbody>
+    </table>
   );
 };
 export default SchedulerTable;

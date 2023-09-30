@@ -7,6 +7,9 @@ import Scheduler from "./pages/Scheduler";
 import Appointment from "./pages/Appointment";
 import styled from "styled-components";
 
+import * as db from "./db";
+db.init();
+
 function App() {
   return (
     <Router>

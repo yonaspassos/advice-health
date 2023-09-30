@@ -5,7 +5,7 @@ import FilterButton from "../../components/FilterButton";
 
 const Appointment = () => {
   return (
-    <div className="container-fluid h-100 my-3">
+    <div className="d-flex flex-column container-fluid h-100 my-3">
       <div className="row">
         <div className="col col-md-5">
           <div className="input-group mb-3 p-0">
@@ -19,7 +19,7 @@ const Appointment = () => {
           <FilterButton />
         </div>
       </div>
-      <div className="row">
+      <div className="row flex-grow-1 overflow-auto">
         <div className="col col-md-12">
           <div className="row h-50">
             <div className="col">

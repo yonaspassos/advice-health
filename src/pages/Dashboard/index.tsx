@@ -26,6 +26,7 @@ const Dashboard = () => {
           <div className="row">
             <div className="col">
               <Table />
+              <Table />
             </div>
           </div>
         </div>
