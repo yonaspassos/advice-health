@@ -22,8 +22,7 @@ const Dashboard = () => {
             <DashboardComponent />
           </div>
           <div className="row">
-            <div className="col">
-              <Table />
+            <div className="col h-100 d-flex flex-column flex-grow-1 overflow-y-auto">
               <Table />
             </div>
           </div>

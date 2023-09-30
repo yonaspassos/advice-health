@@ -14,7 +14,7 @@ export type Address = {
 };
 
 export type Appointment = {
-  id: number;
+  id?: number;
   patientName: string;
   date: Date;
   cpf: string;

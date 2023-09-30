@@ -8,7 +8,13 @@ import {
 import styled from "styled-components";
 import { TimeSlotProps } from "./types";
 
-const TimeSlot = ({ time, appointment }: TimeSlotProps) => {
+const TimeSlot = ({
+  time,
+  appointment,
+  onAddClick,
+  onEditClick,
+  onDeleteClick,
+}: TimeSlotProps) => {
   const data = appointment;
   return (
     <div className="card m-2">
@@ -37,16 +43,16 @@ const TimeSlot = ({ time, appointment }: TimeSlotProps) => {
               <Button>
                 <BsCalendarEventFill />
               </Button>
-              <Button>
+              <Button onClick={onDeleteClick}>
                 <BsTrash3Fill />
               </Button>
-              <Button>
+              <Button onClick={onEditClick}>
                 <BsPencil />
               </Button>
             </div>
           ) : (
             <div className="col col-md-1 d-inline-flex align-self-end justify-content-around">
-              <Button>
+              <Button onClick={onAddClick}>
                 <BsPlusCircleFill size={20} />
               </Button>
             </div>

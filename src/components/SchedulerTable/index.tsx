@@ -1,14 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { BsFillPencilFill, BsSearch } from "react-icons/bs";
 import { useIndexedDB } from "react-indexed-db-hook";
+import { Appointment, Doctor } from "../../types";
+import Moment from "react-moment";
 
 const SchedulerTable = () => {
-  const { getAll } = useIndexedDB("appointments");
-  const [appointments, setAppointments] = useState<any[]>([]);
+  const { getAll: getAllAppointments } = useIndexedDB("appointments");
+  const { getAll: getAllDoctors } = useIndexedDB("doctors");
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   useEffect(() => {
-    getAll().then((appointmentsFromDB) => setAppointments(appointmentsFromDB));
-  }, [getAll]);
+    const doctorsPromisse = getAllDoctors();
+    const appointmentsPromisse = getAllAppointments();
+
+    Promise.all([doctorsPromisse, appointmentsPromisse]).then(
+      ([doctorsFromDB, appointmentsFromDB]) => {
+        const newAppointments = appointmentsFromDB.map(
+          (appointment: Appointment) => {
+            const doctor = doctorsFromDB.find(
+              (doctor: Doctor) => doctor.id === appointment.doctorId
+            );
+            return { ...appointment, doctor };
+          }
+        );
+        setAppointments(newAppointments);
+      }
+    );
+  }, [getAllAppointments, getAllDoctors]);
 
   return (
     <table className="table table-striped align-middle">
@@ -29,11 +47,13 @@ const SchedulerTable = () => {
             <td>
               <input className="form-check-input" type="checkbox" />
             </td>
-            <td>{appointment["name"]}</td>
-            <td>{appointment["date"]}</td>
-            <td>{appointment["doctor_id"]}</td>
-            <td>{appointment["email"]}</td>
-            <td>{appointment["phone"]}</td>
+            <td>{appointment.patientName}</td>
+            <td>
+              {/* <Moment format="DD/MM/YYYY hh:mm">{appointment.date}</Moment> */}
+            </td>
+            <td>{appointment.doctor?.name}</td>
+            <td>{appointment.email}</td>
+            <td>{appointment.phone}</td>
             <td>
               <button className="btn">
                 <BsFillPencilFill />

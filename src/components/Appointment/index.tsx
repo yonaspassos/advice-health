@@ -13,7 +13,7 @@ const Appointment = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: lightgray;
+  background-color: #f2f8fa;
 `;
 
 export default Appointment;

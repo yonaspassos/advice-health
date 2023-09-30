@@ -8,7 +8,7 @@ const Doctor = ({ data, onClick }: DoctorProp) => {
       className="d-flex m-3 p-2 align-items-center bg-white"
       onClick={() => onClick && onClick(data)}
     >
-      <ImagePlaceholder className="bg-secondary rounded-circle" />
+      <ImagePlaceholder className="rounded-circle" />
       <div className="d-flex flex-column flex-grow-1 ms-3">
         <span className="w-75 mb-1">{data.name}</span>
         <span className="col-6">{data.specialty}</span>
@@ -20,6 +20,7 @@ const Doctor = ({ data, onClick }: DoctorProp) => {
 const ImagePlaceholder = styled.div`
   width: 50px;
   height: 50px;
+  background: url("https://i.pravatar.cc/50");
 `;
 
 export default Doctor;

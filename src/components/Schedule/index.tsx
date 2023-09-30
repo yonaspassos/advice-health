@@ -1,16 +1,18 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import TimeSlot from "../TimeSlot";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { Appointment as AppointmentType } from "../../types";
 import moment from "moment";
 import { useIndexedDB } from "react-indexed-db-hook";
-import Moment from "react-moment";
+import AppointmentModal from "../AppointmentModal";
+import { type } from "os";
 
 const Schedule = ({ date }: { date?: Date | null }) => {
   const { getAll } = useIndexedDB("appointments");
   const [appointments, setAppointments] = useState<AppointmentType[]>([]);
+  const [selection, setSelection] = useState<any>();
 
-  useEffect(() => {
+  const fetchData = useCallback(() => {
     getAll().then((appointmentsFromDB) =>
       setAppointments(
         appointmentsFromDB.map((appointment) => ({
@@ -20,6 +22,10 @@ const Schedule = ({ date }: { date?: Date | null }) => {
       )
     );
   }, [getAll]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData, date]);
 
   const slots = useMemo(() => {
     const base = date || new Date();
@@ -34,7 +40,6 @@ const Schedule = ({ date }: { date?: Date | null }) => {
 
     return times.map((time: string) => {
       const appointment = appointments.find((a: AppointmentType) => {
-        console.log(a.date, time);
         return a.date.toISOString() === time;
       });
       return {
@@ -48,12 +53,16 @@ const Schedule = ({ date }: { date?: Date | null }) => {
     <div className="d-flex flex-column p-3 h-100">
       {date ? (
         <>
-          <h3>
-            <Moment format="DD/MM/YYYY">{date}</Moment>
-          </h3>
+          <h3>{moment(date).format("DD/MM/YYYY")}</h3>
           <div className="my-3 overflow-y-auto flex-grow-1">
             {slots.map((slot) => (
-              <TimeSlot time={slot.time} appointment={slot.appointment} />
+              <TimeSlot
+                time={slot.time}
+                appointment={slot.appointment}
+                onAddClick={() => setSelection(slot)}
+                onDeleteClick={() => setSelection(slot)}
+                onEditClick={() => setSelection(slot)}
+              />
             ))}
           </div>
         </>
@@ -65,6 +74,15 @@ const Schedule = ({ date }: { date?: Date | null }) => {
           </div>
         </div>
       )}
+      <AppointmentModal
+        selection={selection}
+        onClose={() => {
+          setSelection(null);
+          fetchData();
+        }}
+        date={date}
+        doctorId={1}
+      />
     </div>
   );
 };
