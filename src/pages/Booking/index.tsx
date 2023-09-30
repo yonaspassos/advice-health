@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ListScheduler from "../../components/ListScheduler";
-import CardScheduler from "../../components/CardScheduler";
+import Schedule from "../../components/Schedule";
 
 const Scheduler = () => {
   const [date, setDate] = useState<Date | null>();
@@ -17,7 +17,7 @@ const Scheduler = () => {
         </div>
         <div className="col col-md-7 flex-column h-100">
           <div className="row flex-grow-1 h-100">
-            <CardScheduler date={date} />
+            <Schedule date={date} />
           </div>
         </div>
       </div>

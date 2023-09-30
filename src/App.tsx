@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import Scheduler from "./pages/Scheduler";
+import Booking from "./pages/Booking";
 import Appointment from "./pages/Appointment";
 import styled from "styled-components";
 
@@ -24,7 +24,7 @@ function App() {
           <Content className="col flex-grow-1">
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/scheduler" element={<Scheduler />} />
+              <Route path="/booking" element={<Booking />} />
               <Route path="/appointment" element={<Appointment />} />
             </Routes>
           </Content>

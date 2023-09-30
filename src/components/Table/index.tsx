@@ -49,12 +49,11 @@ const Table = () => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Coluna 1</th>
-            <th className="th-lg">Coluna 2</th>
-            <th>Coluna 3</th>
-            <th>Coluna 4</th>
-            <th>Coluna 5</th>
-            <th>Coluna 6</th>
+            <th>Visto</th>
+            <th className="th-lg">Paciente</th>
+            <th>Status</th>
+            <th>Procedimento</th>
+            <th>Convênio</th>
             <th></th>
           </tr>
         </thead>

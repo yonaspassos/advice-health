@@ -12,7 +12,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/scheduler" className="nav-link">
+          <Link to="/booking" className="nav-link">
             <BsCalendar />
           </Link>
         </li>
