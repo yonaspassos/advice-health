@@ -3,15 +3,14 @@ import Calendar from "react-calendar";
 import styled from "styled-components";
 import { Value } from "react-calendar/dist/cjs/shared/types";
 import Doctors from "../Doctors";
-import { Doctor } from "../../types";
 
 const ListScheduler = ({
   onDateChange,
 }: {
   onDateChange: (newDate: Value) => void;
 }) => {
-  const onDoctorSelect = (doctor: Doctor) => {
-    console.log(doctor);
+  const onDoctorSelect = (doctorId: number) => {
+    console.log(doctorId);
   };
 
   return (
