@@ -6,4 +6,5 @@ export type TimeSlotProps = {
   onAddClick?: () => void;
   onEditClick?: () => void;
   onDeleteClick?: () => void;
+  onEditDateClick?: () => void;
 };

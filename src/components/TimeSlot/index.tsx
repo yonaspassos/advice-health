@@ -14,6 +14,7 @@ const TimeSlot = ({
   onAddClick,
   onEditClick,
   onDeleteClick,
+  onEditDateClick,
 }: TimeSlotProps) => {
   const data = appointment;
   return (
@@ -24,7 +25,7 @@ const TimeSlot = ({
             <div className="col col-md-2">
               <span className="display-5">{time}</span>
             </div>
-            <div className="col d-flex m-3 p-2 align-items-center">
+            <div className="col d-flex mx-3 px-2 align-items-center">
               {appointment?.patientName && (
                 <ImagePlaceholder className="rounded-circle" />
               )}
@@ -41,7 +42,7 @@ const TimeSlot = ({
           {data ? (
             <div className="col col-md-2 d-inline-flex align-self-end justify-content-around">
               <Button>
-                <BsCalendarEventFill />
+                <BsCalendarEventFill onClick={onEditDateClick} />
               </Button>
               <Button onClick={onDeleteClick}>
                 <BsTrash3Fill />

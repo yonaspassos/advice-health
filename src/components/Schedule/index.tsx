@@ -7,6 +7,7 @@ import { useIndexedDB } from "react-indexed-db-hook";
 import AppointmentModal from "../AppointmentModal";
 import CancelModal from "../CancelModal";
 import { ScheduleProps } from "./types";
+import EditDateModal from "../EditDateModal";
 
 type Slot = {
   time: string;
@@ -18,6 +19,7 @@ const Schedule = ({ date, doctorId }: ScheduleProps) => {
   const [appointments, setAppointments] = useState<AppointmentType[]>([]);
   const [toUpsert, setToUpsert] = useState<Slot | null>();
   const [toDelete, setToDelete] = useState<Slot | null>();
+  const [toEditDate, setToEditDate] = useState<Slot | null>();
 
   const fetchData = useCallback(() => {
     getAll().then((appointmentsFromDB) => {
@@ -79,6 +81,7 @@ const Schedule = ({ date, doctorId }: ScheduleProps) => {
                 onAddClick={() => setToUpsert(slot)}
                 onDeleteClick={() => setToDelete(slot)}
                 onEditClick={() => setToUpsert(slot)}
+                onEditDateClick={() => setToEditDate(slot)}
               />
             ))}
           </div>
@@ -107,10 +110,10 @@ const Schedule = ({ date, doctorId }: ScheduleProps) => {
           fetchData();
         }}
       />
-      <CancelModal
-        selection={toDelete}
+      <EditDateModal
+        selection={toEditDate}
         onClose={() => {
-          setToDelete(null);
+          setToEditDate(null);
           fetchData();
         }}
       />

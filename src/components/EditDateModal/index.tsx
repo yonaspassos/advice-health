@@ -3,19 +3,25 @@ import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import { useIndexedDB } from "react-indexed-db-hook";
 
-const EditDateModal = ({ selection, onClose, date, doctorId }: any) => {
+const EditDateModal = ({ selection, onClose }: any) => {
   const [open, setOpen] = useState(false);
-  const { deleteRecord } = useIndexedDB("appointments");
+  const { update } = useIndexedDB("appointments");
+  const [date, setDate] = useState<string>("");
+  const [time, setTime] = useState<string>("");
 
   useEffect(() => {
     setOpen(!!selection);
   }, [selection]);
 
-  const onDeleteConfirm = () => {
+  const onConfirm = () => {
     if (!selection?.appointment.id) {
       return;
     }
-    deleteRecord(selection.appointment.id).then(() => {
+    const newDate = new Date(`${date} ${time}`);
+
+    const newAppointment = { ...selection.appointment, date: newDate };
+
+    update(newAppointment).then(() => {
       setOpen(false);
       onClose();
     });
@@ -51,11 +57,22 @@ const EditDateModal = ({ selection, onClose, date, doctorId }: any) => {
       <div className="row">
         <div className="col col-md-6">
           <div className="mb-3">
-            <input type="date" className="form-control" name="date" id="date" />
+            <input
+              type="date"
+              className="form-control"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              name="date"
+              id="date"
+            />
           </div>
         </div>
         <div className="col col-md-6">
-          <select className="form-select">
+          <select
+            className="form-select"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          >
             {times.map((time) => (
               <option value={time}>{time}</option>
             ))}
@@ -68,7 +85,9 @@ const EditDateModal = ({ selection, onClose, date, doctorId }: any) => {
           <button className="btn btn-outline-primary" onClick={onClose}>
             Cancelar
           </button>
-          <button className="btn btn-warning">Confirmar</button>
+          <button className="btn btn-warning" onClick={onConfirm}>
+            Confirmar
+          </button>
         </div>
       </div>
     </Modal>

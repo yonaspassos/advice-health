@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div className="container-fluid h-100">
       <div className="row h-100">
-        <div className="col col-md-8 my-3">
+        <div className="col d-flex flex-column col-md-8 my-3 h-100 overflow-hidden">
           <div className="row">
             <div className="input-group mb-3 p-0">
               <input type="text" className="form-control" />
@@ -21,7 +21,7 @@ const Dashboard = () => {
           <div className="row">
             <DashboardComponent />
           </div>
-          <div className="row">
+          <div className="row overflow-hidden">
             <div className="col h-100 d-flex flex-column flex-grow-1 overflow-y-auto">
               <Table />
             </div>
