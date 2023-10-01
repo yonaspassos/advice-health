@@ -5,12 +5,13 @@ import { Appointment as AppointmentType } from "../../types";
 import moment from "moment";
 import { useIndexedDB } from "react-indexed-db-hook";
 import AppointmentModal from "../AppointmentModal";
-import { type } from "os";
+import CancelModal from "../CancelModal";
 
 const Schedule = ({ date }: { date?: Date | null }) => {
   const { getAll } = useIndexedDB("appointments");
   const [appointments, setAppointments] = useState<AppointmentType[]>([]);
-  const [selection, setSelection] = useState<any>();
+  const [toUpsert, setToUpsert] = useState<any>();
+  const [toDelete, setToDelete] = useState<any>();
 
   const fetchData = useCallback(() => {
     getAll().then((appointmentsFromDB) =>
@@ -59,9 +60,9 @@ const Schedule = ({ date }: { date?: Date | null }) => {
               <TimeSlot
                 time={slot.time}
                 appointment={slot.appointment}
-                onAddClick={() => setSelection(slot)}
-                onDeleteClick={() => setSelection(slot)}
-                onEditClick={() => setSelection(slot)}
+                onAddClick={() => setToUpsert(slot)}
+                onDeleteClick={() => setToDelete(slot)}
+                onEditClick={() => setToUpsert(slot)}
               />
             ))}
           </div>
@@ -75,13 +76,20 @@ const Schedule = ({ date }: { date?: Date | null }) => {
         </div>
       )}
       <AppointmentModal
-        selection={selection}
+        selection={toUpsert}
         onClose={() => {
-          setSelection(null);
+          setToUpsert(null);
           fetchData();
         }}
         date={date}
         doctorId={1}
+      />
+      <CancelModal
+        selection={toDelete}
+        onClose={() => {
+          setToDelete(null);
+          fetchData();
+        }}
       />
     </div>
   );

@@ -4,12 +4,13 @@ import { Modal } from "react-responsive-modal";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { Appointment } from "../../types";
 import { useIndexedDB } from "react-indexed-db-hook";
+import moment from "moment";
 
 interface Values {
   name: string;
   cpf: string;
   email: string;
-  birthDate?: Date;
+  birthDate: string;
   phone: string;
   street: string;
   number: string;
@@ -21,10 +22,9 @@ interface Values {
 
 const AppointmentModal = ({ selection, onClose, date, doctorId }: any) => {
   const [open, setOpen] = useState(false);
-  const { add } = useIndexedDB("appointments");
+  const { add, update } = useIndexedDB("appointments");
 
   useEffect(() => {
-    console.log(selection);
     setOpen(!!selection);
   }, [selection]);
 
@@ -33,7 +33,7 @@ const AppointmentModal = ({ selection, onClose, date, doctorId }: any) => {
       name: "",
       cpf: "",
       email: "",
-      birthDate: undefined,
+      birthDate: "",
       phone: "",
       street: "",
       number: "",
@@ -47,7 +47,7 @@ const AppointmentModal = ({ selection, onClose, date, doctorId }: any) => {
       data.name = appointment.patientName;
       data.cpf = appointment.cpf;
       data.email = appointment.email;
-      data.birthDate = appointment.birthDate;
+      data.birthDate = moment(appointment.birthDate).format("YYYY-MM-DD");
       data.phone = appointment.phone;
       data.street = appointment.address.street;
       data.number = appointment.address.number;
@@ -71,7 +71,7 @@ const AppointmentModal = ({ selection, onClose, date, doctorId }: any) => {
       patientName: values.name,
       date: appointmentDate,
       cpf: values.cpf,
-      birthDate: new Date(),
+      birthDate: new Date(`${values.birthDate} 12:00:00`),
       address: {
         street: values.street,
         number: values.number,
@@ -84,7 +84,13 @@ const AppointmentModal = ({ selection, onClose, date, doctorId }: any) => {
       email: values.email,
       doctorId: doctorId,
     };
-    add(appointment);
+    if (selection?.appointment) {
+      appointment.id = selection.appointment.id;
+      update(appointment);
+    } else {
+      add(appointment);
+    }
+
     handleClose();
   };
 
