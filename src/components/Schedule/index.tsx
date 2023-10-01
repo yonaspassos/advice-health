@@ -6,23 +6,39 @@ import moment from "moment";
 import { useIndexedDB } from "react-indexed-db-hook";
 import AppointmentModal from "../AppointmentModal";
 import CancelModal from "../CancelModal";
+import { ScheduleProps } from "./types";
 
-const Schedule = ({ date }: { date?: Date | null }) => {
+type Slot = {
+  time: string;
+  appointment: AppointmentType | undefined;
+};
+
+const Schedule = ({ date, doctorId }: ScheduleProps) => {
   const { getAll } = useIndexedDB("appointments");
   const [appointments, setAppointments] = useState<AppointmentType[]>([]);
-  const [toUpsert, setToUpsert] = useState<any>();
-  const [toDelete, setToDelete] = useState<any>();
+  const [toUpsert, setToUpsert] = useState<Slot | null>();
+  const [toDelete, setToDelete] = useState<Slot | null>();
 
   const fetchData = useCallback(() => {
-    getAll().then((appointmentsFromDB) =>
+    getAll().then((appointmentsFromDB) => {
+      const filteredAppointments = appointmentsFromDB.filter(
+        (appointment: AppointmentType) => {
+          const appointmentDate = moment(appointment.date).format("YYYY-MM-DD");
+          return (
+            appointmentDate === moment(date).format("YYYY-MM-DD") &&
+            appointment.doctorId === doctorId
+          );
+        }
+      );
+
       setAppointments(
-        appointmentsFromDB.map((appointment) => ({
+        filteredAppointments.map((appointment) => ({
           ...appointment,
           date: new Date(appointment.date),
         }))
-      )
-    );
-  }, [getAll]);
+      );
+    });
+  }, [getAll, date, doctorId]);
 
   useEffect(() => {
     fetchData();
@@ -82,7 +98,14 @@ const Schedule = ({ date }: { date?: Date | null }) => {
           fetchData();
         }}
         date={date}
-        doctorId={1}
+        doctorId={doctorId}
+      />
+      <CancelModal
+        selection={toDelete}
+        onClose={() => {
+          setToDelete(null);
+          fetchData();
+        }}
       />
       <CancelModal
         selection={toDelete}

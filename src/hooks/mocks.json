@@ -1,0 +1,207 @@
+{
+  "doctors": [
+    {
+      "id": 1,
+      "name": "Ana Silva",
+      "specialty": "Ortodontia"
+    },
+    {
+      "id": 2,
+      "name": "Carlos Oliveira",
+      "specialty": "Periodontia"
+    },
+    {
+      "id": 3,
+      "name": "Marta Santos",
+      "specialty": "Endodontia"
+    },
+    {
+      "id": 4,
+      "name": "Pedro Costa",
+      "specialty": "Implantodontia"
+    },
+    {
+      "id": 5,
+      "name": "Lúcia Rodrigues",
+      "specialty": "Odontopediatria"
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "name": "Ana Silva",
+      "phone": "(11) 1234-5678",
+      "email": "ana.silva@email.com",
+      "date": "2023-09-19",
+      "doctor_id": 3
+    },
+    {
+      "id": 2,
+      "name": "Carlos Oliveira",
+      "phone": "(21) 9876-5432",
+      "email": "carlos.oliveira@email.com",
+      "date": "2023-09-21",
+      "doctor_id": 7
+    },
+    {
+      "id": 3,
+      "name": "Marta Santos",
+      "phone": "(31) 5555-5555",
+      "email": "marta.santos@email.com",
+      "date": "2023-09-25",
+      "doctor_id": 12
+    },
+    {
+      "id": 4,
+      "name": "Pedro Costa",
+      "phone": "(41) 8765-4321",
+      "email": "pedro.costa@email.com",
+      "date": "2023-09-27",
+      "doctor_id": 5
+    },
+    {
+      "id": 5,
+      "name": "Lúcia Rodrigues",
+      "phone": "(51) 2222-2222",
+      "email": "lucia.rodrigues@email.com",
+      "date": "2023-09-29",
+      "doctor_id": 10
+    },
+    {
+      "id": 6,
+      "name": "Rui Pereira",
+      "phone": "(11) 1111-1111",
+      "email": "rui.pereira@email.com",
+      "date": "2023-10-03",
+      "doctor_id": 8
+    },
+    {
+      "id": 7,
+      "name": "Fernanda Lima",
+      "phone": "(21) 2222-2222",
+      "email": "fernanda.lima@email.com",
+      "date": "2023-10-05",
+      "doctor_id": 2
+    },
+    {
+      "id": 8,
+      "name": "José Almeida",
+      "phone": "(31) 3333-3333",
+      "email": "jose.almeida@email.com",
+      "date": "2023-10-10",
+      "doctor_id": 11
+    },
+    {
+      "id": 9,
+      "name": "Carla Santos",
+      "phone": "(41) 4444-4444",
+      "email": "carla.santos@email.com",
+      "date": "2023-10-12",
+      "doctor_id": 6
+    },
+    {
+      "id": 10,
+      "name": "Mariana Silva",
+      "phone": "(51) 5555-5555",
+      "email": "mariana.silva@email.com",
+      "date": "2023-10-17",
+      "doctor_id": 13
+    },
+    {
+      "id": 11,
+      "name": "Antônio Pereira",
+      "phone": "(11) 3333-3333",
+      "email": "antonio.pereira@email.com",
+      "date": "2023-10-19",
+      "doctor_id": 4
+    },
+    {
+      "id": 12,
+      "name": "Lúcia Oliveira",
+      "phone": "(21) 4444-4444",
+      "email": "lucia.oliveira@email.com",
+      "date": "2023-10-24",
+      "doctor_id": 9
+    },
+    {
+      "id": 13,
+      "name": "Roberto Mendonça",
+      "phone": "(31) 6666-6666",
+      "email": "roberto.mendonca@email.com",
+      "date": "2023-10-26",
+      "doctor_id": 14
+    },
+    {
+      "id": 14,
+      "name": "Camila Rodrigues",
+      "phone": "(41) 7777-7777",
+      "email": "camila.rodrigues@email.com",
+      "date": "2023-10-31",
+      "doctor_id": 1
+    },
+    {
+      "id": 15,
+      "name": "Fábio Santos",
+      "phone": "(51) 8888-8888",
+      "email": "fabio.santos@email.com",
+      "date": "2023-11-02",
+      "doctor_id": 15
+    },
+    {
+      "id": 16,
+      "name": "Luis Ferreira",
+      "phone": "(11) 9999-9999",
+      "email": "luis.ferreira@email.com",
+      "date": "2023-11-07",
+      "doctor_id": 7
+    },
+    {
+      "id": 17,
+      "name": "Catarina Alves",
+      "phone": "(21) 6666-6666",
+      "email": "catarina.alves@email.com",
+      "date": "2023-11-09",
+      "doctor_id": 2
+    },
+    {
+      "id": 18,
+      "name": "Ricardo Mendes",
+      "phone": "(31) 8888-8888",
+      "email": "ricardo.mendes@email.com",
+      "date": "2023-11-14",
+      "doctor_id": 11
+    },
+    {
+      "id": 19,
+      "name": "Lara Lima",
+      "phone": "(41) 9999-9999",
+      "email": "lara.lima@email.com",
+      "date": "2023-11-16",
+      "doctor_id": 6
+    },
+    {
+      "id": 20,
+      "name": "Vitoria Souza",
+      "phone": "(51) 9999-9999",
+      "email": "vitoria.souza@email.com",
+      "date": "2023-10-05",
+      "doctor_id": 13
+    },
+    {
+      "id": 21,
+      "name": "Gustavo Pereira",
+      "phone": "(11) 6666-6666",
+      "email": "gustavo.pereira@email.com",
+      "date": "2023-10-05",
+      "doctor_id": 4
+    },
+    {
+      "id": 22,
+      "name": "Isabel Oliveira",
+      "phone": "(21) 8888-8888",
+      "email": "isabel.oliveira@email.com",
+      "date": "2023-10-05",
+      "doctor": 13
+    }
+  ]
+}

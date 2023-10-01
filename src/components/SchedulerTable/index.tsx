@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BsFillPencilFill, BsSearch } from "react-icons/bs";
 import { useIndexedDB } from "react-indexed-db-hook";
 import { Appointment, Doctor } from "../../types";
-import Moment from "react-moment";
+import moment from "moment";
 
 const SchedulerTable = () => {
   const { getAll: getAllAppointments } = useIndexedDB("appointments");
@@ -48,9 +48,7 @@ const SchedulerTable = () => {
               <input className="form-check-input" type="checkbox" />
             </td>
             <td>{appointment.patientName}</td>
-            <td>
-              {/* <Moment format="DD/MM/YYYY hh:mm">{appointment.date}</Moment> */}
-            </td>
+            <td>{moment(appointment.date).format("DD/MM/YYYY hh:mm")}</td>
             <td>{appointment.doctor?.name}</td>
             <td>{appointment.email}</td>
             <td>{appointment.phone}</td>
