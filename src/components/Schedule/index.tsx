@@ -70,12 +70,13 @@ const Schedule = ({ date, doctorId }: ScheduleProps) => {
 
   return (
     <div className="d-flex flex-column p-3 h-100">
-      {date ? (
+      {date && doctorId ? (
         <>
           <h3>{moment(date).format("DD/MM/YYYY")}</h3>
           <div className="my-3 overflow-y-auto flex-grow-1">
             {slots.map((slot) => (
               <TimeSlot
+                key={slot.time}
                 time={slot.time}
                 appointment={slot.appointment}
                 onAddClick={() => setToUpsert(slot)}

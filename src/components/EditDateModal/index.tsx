@@ -74,7 +74,9 @@ const EditDateModal = ({ selection, onClose }: any) => {
             onChange={(e) => setTime(e.target.value)}
           >
             {times.map((time) => (
-              <option value={time}>{time}</option>
+              <option key={time} value={time}>
+                {time}
+              </option>
             ))}
           </select>
         </div>
