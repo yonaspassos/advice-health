@@ -1,72 +1,9 @@
 import React from "react";
 import { BsCashCoin } from "react-icons/bs";
+import styled from "styled-components";
 
 const Table = () => {
   const data = [
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
-    {
-      col2: "coluna 2",
-      col3: "coluna 2",
-      col4: "coluna 2",
-      col5: "coluna 2",
-      col6: "coluna 2",
-      col7: "coluna 2",
-    },
     {
       col2: "coluna 2",
       col3: "coluna 2",
@@ -183,7 +120,9 @@ const Table = () => {
                 <td>{schedule["col5"]}</td>
                 <td>
                   <div className="d-flex flex-row gap-1">
-                    <BsCashCoin />
+                    <Button>
+                      <BsCashCoin />
+                    </Button>
                   </div>
                 </td>
               </tr>
@@ -194,4 +133,14 @@ const Table = () => {
     </div>
   );
 };
+
+const Button = styled.button`
+  &:hover {
+    color: #3984b8;
+  }
+  border: none;
+  cursor: pointer;
+  background: transparent;
+`;
+
 export default Table;

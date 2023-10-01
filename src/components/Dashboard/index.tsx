@@ -19,7 +19,7 @@ const Dashboard = () => {
 
       setAppointmentCount(appointmentsToday.length);
     });
-  }, []);
+  }, [getAll]);
 
   return (
     <div className="col">
